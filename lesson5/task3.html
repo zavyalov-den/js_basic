@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      td {
+        border: 1px solid #000;
+        width: 30px;
+        height: 30px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main"></div>
+  </body>
+  <script>
+    let main = document.querySelector(".main");
+    main.appendChild(document.createElement("table"));
+
+    let table = document.querySelector("table");
+
+    const letters = "ABCDEFGH";
+    const size = 8;
+    for (let i = 0; i <= size; i++) {
+      let row = document.createElement("tr");
+      let cur_row = table.appendChild(row);
+
+      if (i == size) {
+        for (let k = 0; k < size; k++) {
+          let col = document.createElement("td");
+          let cur_col = cur_row.appendChild(col);
+
+          cur_col.innerText = letters[k];
+          cur_col.style.border = "none";
+        }
+        break;
+      }
+
+      for (let k = 0; k <= size; k++) {
+        let col = document.createElement("td");
+        let cur_col = cur_row.appendChild(col);
+
+        if (k == size) {
+          cur_col.innerText = i + 1;
+          cur_col.style.border = "none";
+          break;
+        }
+
+        if (i % 2 == 0) {
+          k % 2 == 0
+            ? (cur_col.style.backgroundColor = "#fff")
+            : (cur_col.style.backgroundColor = "#000");
+        } else {
+          k % 2 == 1
+            ? (cur_col.style.backgroundColor = "#fff")
+            : (cur_col.style.backgroundColor = "#000");
+        }
+      }
+    }
+  </script>
+</html>

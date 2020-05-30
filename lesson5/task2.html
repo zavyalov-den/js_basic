@@ -1,0 +1,105 @@
+<!-- Получился какой-то сумбур, но он работает. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        display: flex;
+      }
+      .product {
+        display: inline-block;
+        border: 1px solid black;
+        margin: 10px;
+        padding: 15px;
+        width: 300px;
+      }
+      .placeholder {
+        height: 100px;
+        padding-top: 80px;
+        text-align: center;
+        border: 1px solid black;
+        background-color: #ddd;
+      }
+      button {
+        margin-top: 10px;
+        width: 100px;
+        height: 35px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main"></div>
+  </body>
+  <script>
+    const products = [
+      {
+        name: "product 1",
+        description:
+          "Velit sunt do commodo sunt eu non occaecat enim nostrud dolor proident irure officia aute. Culpa irure ipsum Lorem magna commodo consequat ullamco velit dolore elit cupidatat ut pariatur. Do esse esse officia cillum occaecat enim commodo magna sit incididunt irure et culpa. Id commodo voluptate amet do cupidatat.",
+      },
+      {
+        name: "product 2",
+        description:
+          "Velit sunt do commodo sunt eu non occaecat enim nostrud dolor proident irure officia aute. Culpa irure ipsum Lorem magna commodo consequat ullamco velit dolore elit cupidatat ut pariatur. Do esse esse officia cillum occaecat enim commodo magna sit incididunt irure et culpa. Id commodo voluptate amet do cupidatat.",
+      },
+      {
+        name: "product 3",
+        description:
+          "Velit sunt do commodo sunt eu non occaecat enim nostrud dolor proident irure officia aute. Culpa irure ipsum Lorem magna commodo consequat ullamco velit dolore elit cupidatat ut pariatur. Do esse esse officia cillum occaecat enim commodo magna sit incididunt irure et culpa. Id commodo voluptate amet do cupidatat.",
+      },
+    ];
+
+    const main = document.querySelector(".main");
+
+    for (const product of products) {
+      let el = document.createElement("div");
+      el.className = "product";
+
+      let title = document.createElement("h3");
+      title.innerText = product.name;
+
+      let description = document.createElement("p");
+      description.innerText = product.description;
+      description.className = "hidden";
+
+      let placeholder = document.createElement("div");
+      let phText = document.createElement("h5");
+
+      phText.innerText = "placeholder".toUpperCase();
+      placeholder.className = "placeholder";
+      placeholder.appendChild(phText);
+
+      let button = document.createElement("button");
+      button.innerText = "details";
+
+      let br = document.createElement("br");
+
+      el.appendChild(title);
+      el.appendChild(description);
+      el.appendChild(placeholder);
+      el.appendChild(br);
+      el.appendChild(button);
+
+      const buttonHandler = (e) => {
+        console.log(e.target);
+        console.log(e.target.parentNode);
+
+        let desc = e.target.parentNode.querySelector("p");
+        desc.classList.toggle("hidden");
+
+        let ph = e.target.parentNode.querySelector(".placeholder");
+        ph.classList.toggle("hidden");
+      };
+
+      button.addEventListener("click", buttonHandler);
+
+      main.appendChild(el);
+    }
+  </script>
+</html>
