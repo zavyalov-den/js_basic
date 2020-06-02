@@ -1,0 +1,57 @@
+<!-- 3 a. Сделайте модальное (появляющееся и исчезающее) окно -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #modal {
+        display: none;
+        width: 300px;
+        height: 100px;
+        margin: 0 auto;
+        background-color: #eee;
+        text-align: center;
+        vertical-align: middle;
+        padding-top: 50px;
+        border: 1px solid black;
+      }
+      #openModal {
+        width: 100px;
+        height: 60px;
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <button id="openModal">Тык</button>
+      <div id="modal">
+        <h3>hello from modal</h3>
+      </div>
+    </div>
+    <script>
+      let button = document.getElementById("openModal");
+      let modal = document.getElementById("modal");
+      let main = document.querySelector(".main");
+
+      const buttonClickHandler = (event) => {
+        modal.style.display = "block";
+        event.stopPropagation();
+      };
+
+      const mainClickHandler = (event) => {
+        modal.style.display = "none";
+        event.stopPropagation();
+      };
+
+      button.addEventListener("click", buttonClickHandler);
+      main.addEventListener("click", mainClickHandler);
+      modal.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+    </script>
+  </body>
+</html>
