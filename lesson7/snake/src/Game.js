@@ -16,8 +16,8 @@ class Game {
   }
 
   nextTick() {
-    this.board.clearBoard();
     this.step();
+    this.board.clearBoard();
     this.board.drawSnake(this.snake);
   }
 
