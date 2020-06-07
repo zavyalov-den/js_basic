@@ -1,8 +1,9 @@
 class Game {
-  constructor(board, snake, speed) {
+  constructor(board, snake, speed, win) {
     this.board = board;
     this.snake = snake;
     this.speed = speed;
+    this.winLength = win;
   }
 
   score = 0;
@@ -21,12 +22,12 @@ class Game {
   }
 
   step() {
-    this.snake.snakeBody.unshift(this.snake.nextHeadPosition());
-
     if (this.snakeCollisionOccured(this.snake.nextHeadPosition())) {
       alert("GAME OVER \n your score is " + this.score);
       location.reload();
     }
+
+    this.snake.snakeBody.unshift(this.snake.nextHeadPosition());
 
     if (this.foodCollisionOccurred(this.snake.snakeBody[0])) {
       this.increaseScore();
@@ -34,6 +35,10 @@ class Game {
       this.createFood();
     } else {
       this.snake.snakeBody.pop();
+    }
+    if (this.checkWinCondition()) {
+      alert("You won! \n your score is " + this.score);
+      location.reload();
     }
   }
 
@@ -53,6 +58,10 @@ class Game {
       console.log("collision detected");
       return true;
     }
+  }
+
+  checkWinCondition() {
+    return this.snake.snakeBody.length >= this.winLength;
   }
 
   keyBindings(e) {
